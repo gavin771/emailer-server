@@ -20,5 +20,6 @@
   "[json]": {
     "editor.formatOnSave": true
   },
-  "prettier.trailingComma": "none"
+  "prettier.trailingComma": "none",
+  "prettier.printWidth": 40
 }
