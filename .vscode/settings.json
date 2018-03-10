@@ -1,0 +1,24 @@
+{
+  // Controls auto save of dirty files. Accepted values:  "off", "afterDelay", "onFocusChange". If set to "afterDelay" you can configure the delay in "files.autoSaveDelay".
+  "files.autoSave": "onFocusChange",
+  // Controls the delay in ms after which a dirty file is saved automatically. Only applies when "files.autoSave" is set to "afterDelay"
+  "files.autoSaveDelay": 2000,
+  // Controls whether the editor should render indent guides
+  "editor.renderIndentGuides": true,
+  "editor.renderWhitespace": "all",
+  "git.confirmSync": false,
+  "vsicons.projectDetection.autoReload": true,
+  "workbench.colorTheme": "Visual Studio Light",
+  "workbench.iconTheme": "vscode-icons",
+  "extensions.ignoreRecommendations": false,
+  "eslint.autoFixOnSave": true,
+  "editor.tabSize": 2,
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[json]": {
+    "editor.formatOnSave": true
+  },
+  "prettier.trailingComma": "none"
+}
