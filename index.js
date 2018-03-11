@@ -3,16 +3,14 @@ const app = express();
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const { cookieKey, mongoURI } = require('./config/keys');
 
-require('dotenv').config();
-
-
-mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@ds211029.mlab.com:11029/${process.env.MONGO_DB}`)
+mongoose.connect(mongoURI);
 
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [process.env.COOKIE_KEY]
+    keys: [cookieKey]
   })
 );
 app.use(passport.initialize());
