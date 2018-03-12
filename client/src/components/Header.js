@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class Header extends Component {
   renderContent (auth) {
-    console.log(auth);
     switch (auth) {
       case null:
-        return null;//()
+        return;
       case false:
         return (
           <li>
@@ -22,10 +22,11 @@ class Header extends Component {
     }
   }
   render () {
+    console.log(this.props.auth ? 'exists' : 'doesn\'t exist')
     return (
       <nav>
         <div className="container nav-wrapper">
-          <a href="/" className="brand-logo left">Emaily</a>
+          <Link to={this.props.auth ? "/surveys" : "/"} className="brand-logo left">Emaily</Link>
           <ul id="nav-mobile" className="right">
             {this.renderContent(this.props.auth)}
 
