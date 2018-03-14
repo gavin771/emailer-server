@@ -25,6 +25,7 @@ require('./services/passport');
 //Routes
 require('./routes/auth')(app);
 require('./routes/api')(app);
+require('./routes/survey')(app);
 
 if (process.env.NODE_ENV === 'production') {
   //look in client/build for file that match unknown requests
