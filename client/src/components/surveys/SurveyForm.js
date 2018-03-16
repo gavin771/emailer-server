@@ -33,7 +33,7 @@ class SurveyForm extends Component {
   render () {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit(values => console.log(values))}>
+        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
           {this.renderFields()}
           <Link to="/surveys" className="red btn-flat left white-text">
             Cancel
@@ -54,7 +54,7 @@ function validate (values) {
   const errors = {};
   FIELDS.forEach(({ name }) => {
 
-    errors.email=validateEmails(values.emails||'');
+    errors.email = validateEmails(values.email || '');
 
     if (!values[name]) {
       errors[name] = `You must enter a ${name}`
