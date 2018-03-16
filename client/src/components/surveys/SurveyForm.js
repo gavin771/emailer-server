@@ -3,22 +3,7 @@ import { reduxForm, Field } from 'redux-form'
 import SurveyField from './SurveyField'
 import { Link } from 'react-router-dom'
 import validateEmails from '../../utils/validateEmails'
-
-const FIELDS = [
-  {
-    label: "Survey Title",
-    name: "title"
-  }, {
-    label: "Subject Line",
-    name: "subject"
-  }, {
-    label: "Email Body",
-    name: "body"
-  }, {
-    label: "Recipient List",
-    name: "email"
-  }
-]
+import FIELDS from './formFields'
 
 class SurveyForm extends Component {
 
@@ -66,5 +51,6 @@ function validate (values) {
 
 export default reduxForm({
   form: 'surveyForm',
-  validate
+  validate,
+  destroyOnUnmount: false
 })(SurveyForm)

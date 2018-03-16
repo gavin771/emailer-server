@@ -1,11 +1,47 @@
 import React from 'react'
+import { connect } from "react-redux";
+import FIELDS from './formFields'
+import * as actions from '../../actions';
 
-const SurveyFormReview = () => {
+const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
+  const renderContent = FIELDS.map(({ name, label }) => {
+    return (
+      <div key={name}>
+        <label>{label}</label>
+        <div>
+          {formValues[name]}
+        </div>
+      </div>
+    )
+  })
+
   return (
     <div>
-      
+      <h5>Please confirm your entry details</h5>
+      <div>
+
+        {renderContent}
+
+
+      </div>
+      <button className="yellow darken-1 btn-flat white-text" onClick={onCancel}>
+        Back
+      </button>
+      <button
+        onCLick={() => submitSurvey(formValues)}
+        className="green btn-flat right white-text" onClick={onCancel}>
+        Send Survey
+        <i className="material-icons right">email</i>
+      </button>
     </div>
   )
 }
 
-export default SurveyFormReview
+function mapStateToProps (state) {
+  console.log(state)
+  return {
+    formValues: state.form.surveyForm.values
+  }
+}
+
+export default connect(mapStateToProps, actions)(SurveyFormReview)
