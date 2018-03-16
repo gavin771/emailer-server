@@ -6,4 +6,5 @@ module.exports = {
   stripePK: process.env.stripePK,
   stripeSK: process.env.stripeSK,
   sendgrid: process.env.SEND_GRID,
+  redirectDomain: process.env.REDIRECT
 }
