@@ -39,7 +39,7 @@ function validate (values) {
   const errors = {};
   FIELDS.forEach(({ name }) => {
 
-    errors.email = validateEmails(values.email || '');
+    errors.recipients = validateEmails(values.recipients || '');
 
     if (!values[name]) {
       errors[name] = `You must enter a ${name}`

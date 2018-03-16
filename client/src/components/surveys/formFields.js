@@ -10,6 +10,6 @@ export default [
     name: "body"
   }, {
     label: "Recipient List",
-    name: "email"
+    name: "recipients"
   }
 ];
