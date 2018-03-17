@@ -34,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
   //for all other routes, serve the index.html file
   const path = require('path');
   app.get('*', (req, res) => {
-    res.sendFile(path.res(__dirname, 'client', 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
   })
 }
 
