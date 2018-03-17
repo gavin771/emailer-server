@@ -10,6 +10,15 @@ const { URL } = require('url');
 const _ = require('lodash');
 
 module.exports = (app) => {
+
+  app.get('/api/surveys', [isLoggedIn], async (req, res) => {
+    const surveys = await Survey.find({
+      _user: req.user.id
+    }).select({recipients:false});
+
+    res.send(surveys)
+  })
+
   app.post('/api/surveys', [isLoggedIn, hasCredits], async (req, res) => {
     const { title, subject, body, recipients } = req.body;
     const survey = new Survey({
@@ -44,7 +53,7 @@ module.exports = (app) => {
 
     const p = new Path('/api/surveys/:surveyId/:choice');
 
-    const events = _.chain(req.body)
+    _.chain(req.body)
       .map(({ email, url }) => {
         const match = p.test(new URL(url).pathname);
         if (match) {
@@ -57,14 +66,24 @@ module.exports = (app) => {
       })
       .compact()
       .uniqBy('email', 'surveyId')
+      .each(({ surveyId, choice }) => {
+        Survey.updateOne({
+          _id: surveyId,
+          recipients: {
+            $elemMatch: { email, responded: false }
+          }
+        }, {
+            $inc: { [choice]: 1 },
+            $set: { 'recipients.$responded': true },
+            lastResponded: new Date()
+          }).exec()
+      })
       .value();
-
-    console.log(events);
 
     res.send();
   })
 
-  app.get('/api/surveys/thanks', (req, res) => {
+  app.get('/api/surveys/:id/:choice', (req, res) => {
     res.send('Thanks for voting!');
   })
 }
