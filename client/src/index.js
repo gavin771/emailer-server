@@ -11,6 +11,6 @@ import reducers from './reducers'
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk))
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
-registerServiceWorker();
+//registerServiceWorker();
 
-console.log(process.env.REACT_APP_STRIPE_KEY)
+//console.log(process.env.REACT_APP_STRIPE_KEY)
